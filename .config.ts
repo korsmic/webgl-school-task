@@ -10,9 +10,9 @@ interface Config {
 
 
 const config: Config = {
-  SITE_URL: 'https://webgl-school-repo.jws.workwork/',
-  SITE_PATH: '',
-  WP_PATH: 'wp-content/themes/jws/',
+  SITE_URL: 'https://korsmic.github.io/',
+  SITE_PATH: 'webgl-school-task/',
+  WP_PATH: '',
   IMAGE_URL: '',
   BREAK_POINT: 768,
   PC_DESIGN_SIZE: 1400,
