@@ -1,0 +1,21 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.l_container {
+  max-width: pc(1400);
+  padding: 0 pc(100);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: relative;
+  @include media('<tab', 'screen') {
+    padding: 0 vw(15);
+  }
+  &_small {
+    width: pc(1000);
+    @include media('<tab', 'screen') {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@use '../setting' as *;
+
+@mixin bgi($url) {
+  // .envのIMAGE_URLを確認し、入力があれば書き換える
+  // $sitePath: setting.$sitePath;
+  // $ss: $sitePath;
+  @if ($IMAGE_URL == '') {
+    $img: '../../common/images/';
+    background-image: url(#{$img}#{$url});
+  } @else {
+    $img: 'common/images/';
+    background-image: url(#{$IMAGE_URL}#{$img}#{$url});
+  }
+}

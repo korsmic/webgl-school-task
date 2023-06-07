@@ -1,0 +1,33 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.p_top {
+  font-size: pc(30);
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+
+    li {
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.p_top_wrap {
+  width: pc(1000);
+  margin: auto;
+  padding: pc(50);
+
+  h1 {
+    font-size: pc(50);
+    font-weight: 700;
+    padding-bottom: pc(100);
+  }
+}

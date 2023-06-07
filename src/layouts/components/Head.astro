@@ -1,0 +1,11 @@
+---
+import metadata from '@data/metadata';
+export interface Props {
+  pageId: string;
+}
+const { pageId } = Astro.props;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{metadata.global.title}</title>

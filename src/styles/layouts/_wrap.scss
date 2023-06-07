@@ -1,0 +1,10 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.l_wrap {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}

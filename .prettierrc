@@ -1,0 +1,32 @@
+{
+  "root": true,
+  "extends": ["standard", "prettier", "plugin:prettier/recommended"],
+  "env": {
+    "browser": true
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "tabWidth": 2
+      }
+    ],
+    "eslintIntegration": true,
+    "yoda": 0,
+    "no-useless-constructor": "off",
+    "no-unused-vars": 0,
+    "import/no-webpack-loader-syntax": 0,
+    "no-undef": 0,
+    "no-path-concat": 0,
+    "array-callback-return": 0,
+    "new-cap": "off",
+    "array-element-newline": ["error", "consistent"]
+  },
+  "globals": {
+    "$": false,
+    "IS_DEVELOPMENT": "readonly"
+  }
+}

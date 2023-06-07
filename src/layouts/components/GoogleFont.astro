@@ -1,0 +1,11 @@
+---
+export interface Props {
+  font: string;
+}
+
+const { font } = Astro.props;
+---
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href={font} />
+<link rel="stylesheet" href={font} media="print" onload="this.media='all'" />

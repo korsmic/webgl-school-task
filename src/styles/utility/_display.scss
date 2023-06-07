@@ -1,0 +1,137 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+// block
+.u_db {
+  display: block;
+}
+.u_db-pc {
+  display: block;
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+}
+.u_db-sp {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: block;
+  }
+}
+.u_dib-db {
+  display: inline-block;
+  @include media('<tab', 'screen') {
+    display: block;
+  }
+}
+.u_dn-sp {
+  @include media('<tab', 'screen') {
+    display: none !important;
+  }
+}
+.u_dn-pc {
+  @include media('>tab') {
+    display: none !important;
+  }
+}
+.u_dn-di {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: inline;
+  }
+}
+
+// inline-block
+.u_dib {
+  display: inline-block;
+}
+.u_dib-pc {
+  display: inline-block;
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+}
+.u_dib-sp {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: inline-block;
+  }
+}
+.u_db-dib {
+  display: block;
+  @include media('<tab', 'screen') {
+    display: inline-block;
+  }
+}
+.u_db-di {
+  display: block;
+  @include media('<tab', 'screen') {
+    display: inline;
+  }
+}
+.u_dib-di {
+  display: inline-block;
+  @include media('<tab', 'screen') {
+    display: inline;
+  }
+}
+.u_dib-db {
+  display: inline-block;
+  @include media('<tab', 'screen') {
+    display: block;
+  }
+}
+
+// inline
+.u_di {
+  display: inline;
+}
+.u_di-pc {
+  display: inline;
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+}
+.u_di-sp {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: inline;
+  }
+}
+
+// flex
+.u_df {
+  display: flex;
+}
+.u_df-pc {
+  display: flex;
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+}
+.u_df-sp {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: flex;
+  }
+}
+
+// flex
+.u_dif {
+  display: inline-flex;
+}
+.u_dif-pc {
+  display: inline-flex;
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+}
+.u_dif-sp {
+  display: none;
+  @include media('<tab', 'screen') {
+    display: inline-flex;
+  }
+}
+
+.u_jcc {
+  justify-content: center;
+}

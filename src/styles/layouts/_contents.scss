@@ -1,0 +1,7 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.l_contents {
+  padding-top: pc(50);
+  padding-bottom: pc(50);
+}

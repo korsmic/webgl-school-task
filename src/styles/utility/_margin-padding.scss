@@ -1,0 +1,67 @@
+@use 'sass:math';
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+@for $i from 0 through 20 {
+  .u_pt#{$i * 5} {
+    padding-top: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_pb#{$i * 5} {
+    padding-bottom: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_pl#{$i * 5} {
+    padding-left: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_pr#{$i * 5} {
+    padding-right: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_mt#{$i * 5} {
+    margin-top: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_mb#{$i * 5} {
+    margin-bottom: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_ml#{$i * 5} {
+    margin-left: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+  .u_mr#{$i * 5} {
+    margin-right: min(#{vwPC(5 * $i)}, #{5px * $i});
+  }
+}
+
+@include media('<tab', 'screen') {
+  @for $i from 0 through 20 {
+    .u_sp_pt#{$i * 5} {
+      padding-top: vw(5 * $i);
+    }
+    .u_sp_pb#{$i * 5} {
+      padding-bottom: vw(5 * $i);
+    }
+    .u_sp_pl#{$i * 5} {
+      padding-left: vw(5 * $i);
+    }
+    .u_sp_pr#{$i * 5} {
+      padding-right: vw(5 * $i);
+    }
+    .u_sp_mt#{$i * 5} {
+      margin-top: vw(5 * $i);
+    }
+    .u_sp_mb#{$i * 5} {
+      margin-bottom: vw(5 * $i);
+    }
+    .u_sp_ml#{$i * 5} {
+      margin-left: vw(5 * $i);
+    }
+    .u_sp_mr#{$i * 5} {
+      margin-right: vw(5 * $i);
+    }
+  }
+}
+
+.u_mra {
+  margin-right: auto;
+}
+
+.u_mla {
+  margin-left: auto;
+}

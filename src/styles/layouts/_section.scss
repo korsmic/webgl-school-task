@@ -1,0 +1,11 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.l_section {
+  margin-top: pc(100);
+  margin-bottom: pc(100);
+  @include media('<tab', 'screen') {
+    margin-top: vw(50);
+    margin-bottom: vw(50);
+  }
+}

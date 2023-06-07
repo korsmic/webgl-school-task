@@ -1,0 +1,42 @@
+---
+import config from '../../../.config';
+
+const IS_WP = process.env.IS_WP === 'true';
+const SITE_PATH = IS_WP ? config.WP_PATH : config.SITE_PATH;
+
+export interface Props {
+  svgId: string;
+  width: number;
+  height: number;
+  alt?: string;
+  full?: boolean;
+  altID?: string;
+}
+
+const { svgId, width, height, alt, full = true, altID } = Astro.props;
+
+const IMAGE_URL = config.IMAGE_URL === '' ? '/' : config.IMAGE_URL;
+const isAlt = alt !== undefined;
+---
+
+{
+  isAlt ? (
+    <svg
+      class={full ? 'c_svg-full' : 'c_svg'}
+      width={String(width)}
+      height={String(height)}
+      aria-labelledby={altID}
+    >
+      <title id={altID}>{alt}</title>
+      <use href={`${IMAGE_URL}${SITE_PATH}assets/svg/${svgId}.svg#${svgId}`} />
+    </svg>
+  ) : (
+    <svg
+      class={full ? 'c_svg-full' : 'c_svg'}
+      width={String(width)}
+      height={String(height)}
+    >
+      <use href={`${IMAGE_URL}${SITE_PATH}assets/svg/${svgId}.svg#${svgId}`} />
+    </svg>
+  )
+}

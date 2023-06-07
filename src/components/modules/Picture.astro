@@ -1,0 +1,96 @@
+---
+import ImageSize from 'image-size';
+import config from '../../../.config';
+
+const IS_WP = process.env.IS_WP === 'true';
+const SITE_PATH = IS_WP ? config.WP_PATH : config.SITE_PATH;
+
+export interface Props {
+  src: string;
+  sp?: boolean;
+  alt: string;
+  full?: boolean;
+  lazy?: boolean;
+}
+
+const { src, sp = true, alt, full = true, lazy = true } = Astro.props;
+
+const IMAGE_URL = config.IMAGE_URL === '' ? '/' : config.IMAGE_URL;
+const PATH = 'assets/images';
+
+const pcSrc = `${IMAGE_URL}${SITE_PATH}${PATH}/${src}`;
+const sizePcSrc = `${PATH}/${src}`;
+
+const spSrc = (() => {
+  const path = src.split('/').reverse().slice(1).reverse().join('/');
+  const filename = src.split('/').reverse()[0].split('.')[0];
+  const generateSpPath = `${IMAGE_URL}${SITE_PATH}${PATH}/${
+    path !== '' ? `${path}/` : ''
+  }sp/${filename}`;
+  return generateSpPath;
+})();
+
+const sizeSpSrc = (() => {
+  const path = src.split('/').reverse().slice(1).reverse().join('/');
+  const filename = src.split('/').reverse()[0].split('.')[0];
+  const generateSpPath = `${PATH}/${
+    path !== '' ? `${path}/` : ''
+  }sp/${filename}`;
+  return generateSpPath;
+})();
+
+const pcSize = ImageSize(`public/${sizePcSrc}.webp`);
+const spSize = sp ? ImageSize(`public/${sizeSpSrc}.webp`) : null;
+
+const pcImagePath = (ext) => `${pcSrc}.${ext}`;
+---
+
+<picture class={full ? 'c_picture-full' : 'c_picture'}>
+  <source
+    type="image/avif"
+    srcset={pcImagePath('avif')}
+    width={Math.round(pcSize.width / 2)}
+    height={Math.round(pcSize.height / 2)}
+    media={`(min-width:${config.BREAK_POINT}px)`}
+  />
+  <source
+    type="image/webp"
+    srcset={pcImagePath('webp')}
+    width={Math.round(pcSize.width / 2)}
+    height={Math.round(pcSize.height / 2)}
+    media={`(min-width:${config.BREAK_POINT}px)`}
+  />
+  {
+    () => {
+      if (sp) {
+        return (
+          <>
+            <source
+              type="image/avif"
+              srcset={`${spSrc}.avif`}
+              width={Math.round(spSize.width / 2)}
+              height={Math.round(spSize.height / 2)}
+              media={`(max-width:${config.BREAK_POINT - 1}px)`}
+            />
+            <source
+              type="image/webp"
+              srcset={`${spSrc}.webp`}
+              width={Math.round(spSize.width / 2)}
+              height={Math.round(spSize.height / 2)}
+              media={`(max-width:${config.BREAK_POINT - 1}px)`}
+            />
+          </>
+        );
+      }
+    }
+  }
+  <img
+    src={`${pcSrc}.webp`}
+    loading={lazy ? 'lazy' : 'eager'}
+    fetchpriority={lazy ? 'auto' : 'high'}
+    decoding="async"
+    width={pcSize.width / 2}
+    height={pcSize.height / 2}
+    alt={alt}
+  />
+</picture>

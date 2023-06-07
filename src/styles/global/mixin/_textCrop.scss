@@ -1,0 +1,20 @@
+@use 'sass:math';
+@use '../setting' as *;
+
+@mixin textCrop($fz, $top-crop, $bottom-crop) {
+  $dynamic-top-crop: math.div(max($top-crop, 0), $fz);
+  $dynamic-bottom-crop: math.div(max($bottom-crop, 0), $fz);
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+  }
+  &::before {
+    margin-bottom: -#{$dynamic-top-crop}em;
+  }
+  &::after {
+    margin-top: -#{$dynamic-bottom-crop}em;
+  }
+}

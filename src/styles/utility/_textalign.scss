@@ -1,0 +1,19 @@
+@use 'sass:math';
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.u_tar {
+  text-align: right;
+}
+.u_tac {
+  text-align: center;
+}
+.u_tal {
+  text-align: left;
+}
+.u_tac-tal {
+  text-align: center;
+  @include media('<tab', 'screen') {
+    text-align: left;
+  }
+}

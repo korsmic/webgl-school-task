@@ -1,0 +1,33 @@
+// =========================================================
+// https://eduardoboucas.github.io/include-media/#features
+// ssp: スマホ(iphoneSE)
+// sp: スマホ(iphone6)
+// spc: 小型PC
+// tab: タブレット
+// pc: 小型PC
+// lpc: 大型PC
+// llpc: 大型PC
+// =========================================================
+
+$media-expressions: (
+  'screen': 'screen',
+  'print': 'print',
+  'handheld': 'handheld',
+  'landscape': '(orientation: landscape)',
+  'portrait': '(orientation: portrait)',
+  'retina2x': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)',
+  'retina3x': '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi)',
+) !default;
+
+$breakpoints: (
+  'ssp': 320px,
+  'sp': 480px,
+  'tab': 768px,
+  'spc': 900px,
+  'pc': 1024px,
+  'lpc': 1260px,
+  'llpc': 1360px,
+) !default;
+
+$pc-design-width: 1400;
+$sp-design-width: 375;
