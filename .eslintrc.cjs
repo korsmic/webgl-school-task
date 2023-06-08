@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
-  ignorePatterns: ['*.d.ts', 'node_modules', 'docs', 'GAHead.astro'],
+  ignorePatterns: ['*.d.ts', 'node_modules', 'dist', 'GAHead.astro'],
   extends: [
     'eslint:recommended',
     'plugin:import/typescript',

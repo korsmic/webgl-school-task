@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import config from './.config';
+import relativeLinks from 'astro-relative-links';
 
 // https://astro.build/config
 // https://purgecss.com/configuration.html#options
@@ -7,13 +8,14 @@ import config from './.config';
 const IS_WP = process.env.IS_WP === 'true';
 
 export default defineConfig({
+  integrations: [relativeLinks()],
   env: {
     IS_WP: IS_WP,
   },
   site: `${config.SITE_URL}${IS_WP ? config.WP_PATH : config.SITE_PATH}`,
   base: `${IS_WP ? config.WP_PATH : config.SITE_PATH}`,
   output: 'static',
-  outDir: `./docs/${IS_WP ? config.WP_PATH : config.SITE_PATH}`,
+  outDir: `./dist/${IS_WP ? config.WP_PATH : config.SITE_PATH}`,
   build: {
     format: 'directory',
     assets: 'assets',

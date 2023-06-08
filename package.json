@@ -6,8 +6,8 @@
   "version": "0.0.5",
   "scripts": {
     "dev": "run-p lint:watch astro:dev",
-    "build": "run-s lint clean:docs astro:build minify-html beautify",
-    "buildwp": "run-s lint clean:docs astro:buildwp beautify",
+    "build": "run-s lint clean:dist astro:build minify-html beautify",
+    "buildwp": "run-s lint clean:dist astro:buildwp beautify",
     "astro:dev": "astro dev --host 0.0.0.0",
     "start": "astro dev",
     "astro:build": "cross-env IS_WP=false astro build",
@@ -17,12 +17,12 @@
     "format": "prettier --write src/**/*.{ts,tsx,astro}",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx,astro}\" --fix --ignore-path .gitignore",
     "lint:watch": "chokidar \"./src/**/*.{js,jsx,ts,tsx,astro}\" -c \"npm run lint\"",
-    "clean": "rimraf docs node_modules",
-    "clean:docs": "rimraf docs/*",
+    "clean": "rimraf dist node_modules",
+    "clean:dist": "rimraf dist/*",
     "image:clean": "rimraf public/assets/images",
     "image:node": "node imagemin.mjs",
     "image": "run-s image:clean image:node",
-    "beautify": "html-beautify docs/**/*.html",
+    "beautify": "html-beautify dist/**/*.html",
     "minify-html": "node minify-html.mjs"
   },
   "devDependencies": {
@@ -55,6 +55,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "astro-relative-links": "^0.3.4",
     "gsap": "npm:@gsap/shockingly@^3.11.5",
     "three": "^0.153.0"
   }

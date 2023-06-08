@@ -11,7 +11,7 @@ interface Config {
 
 const config: Config = {
   SITE_URL: 'https://korsmic.github.io/',
-  SITE_PATH: 'webgl-school-task/',
+  SITE_PATH: '',
   WP_PATH: '',
   IMAGE_URL: '',
   BREAK_POINT: 768,

@@ -1,4 +1,4 @@
-docs/
+dist/
 .output/
 node_modules/
 public/
