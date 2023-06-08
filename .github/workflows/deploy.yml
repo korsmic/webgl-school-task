@@ -1,11 +1,11 @@
-name: Github Pages Astro CI
+name: Deploy to GitHub Pages
 
 on:
-  # `main`ブランチにプッシュするたびにワークフローを起動させる
-  # 別のブランチ名を使う場合は`main`をあなたのブランチ名で置き換えてください。
+  # Trigger the workflow every time you push to the `main` branch
+  # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [main]
-  # GitHubのActionsタブから、このワークフローを手動で実行できるようにします。
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
 # Allow this job to clone the repo and create a page deployment
@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
-      - name: Install, build, and upload your site
+      - name: Install, build, and upload your site output
         uses: withastro/action@v0
         # with:
         # path: . # The root location of your Astro project inside the repository. (optional)
