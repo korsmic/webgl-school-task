@@ -8,35 +8,32 @@ on:
   # GitHubのActionsタブから、このワークフローを手動で実行できるようにします。
   workflow_dispatch:
 
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
-
-    # このジョブがあなたのリポジトリに変更をプッシュすることを許可する
-    permissions:
-      contents: write
-
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Check out your repository using git
-        uses: actions/checkout@v2
+      - name: Checkout your repository using git
+        uses: actions/checkout@v3
+      - name: Install, build, and upload your site
+        uses: withastro/action@v0
+        # with:
+        # path: . # The root location of your Astro project inside the repository. (optional)
+        # node-version: 16 # The specific version of Node that should be used to build your site. Defaults to 16. (optional)
+        # package-manager: yarn # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16
-
-      # npmを使っていない場合、`npm ci`を`yarn install`や`pnpm i`に置き換えてください。
-      - name: Install dependencies
-        run: npm ci
-
-      # npmを使っていない場合、`npm run build`を`yarn build`や`pnpm run build`に置き換えてください。
-      - name: Build Astro
-        run: npm run build
-
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # `./dist`はAstroがデフォルトでアウトプットするディレクトリです。
-          # 変更した場合は、こちらも更新してください。
-          publish_dir: ./dist
+        id: deployment
+        uses: actions/deploy-pages@v1
