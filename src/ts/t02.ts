@@ -1,7 +1,13 @@
+window.addEventListener('DOMContentLoaded', (event) => {
+  const app = new App3();
+  app.init();
+  app.render();
+}, false);
+
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-export default class R02 {
+class App3 {
   static get CAMERA_PARAM() {
     return {
       // fovy は Field of View Y のことで、縦方向の視野角を意味する
@@ -159,8 +165,8 @@ export default class R02 {
   init() {
     // レンダラー
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setClearColor(new THREE.Color(R02.RENDERER_PARAM.clearColor));
-    this.renderer.setSize(R02.RENDERER_PARAM.width, R02.RENDERER_PARAM.height);
+    this.renderer.setClearColor(new THREE.Color(App3.RENDERER_PARAM.clearColor));
+    this.renderer.setSize(App3.RENDERER_PARAM.width, App3.RENDERER_PARAM.height);
     this.renderer.shadowMap.enabled = true;
     const wrapper = document.querySelector('#webgl');
     wrapper.appendChild(this.renderer.domElement);
@@ -170,36 +176,36 @@ export default class R02 {
 
     // カメラ
     this.camera = new THREE.PerspectiveCamera(
-      R02.CAMERA_PARAM.fovy,
-      R02.CAMERA_PARAM.aspect,
-      R02.CAMERA_PARAM.near,
-      R02.CAMERA_PARAM.far,
+      App3.CAMERA_PARAM.fovy,
+      App3.CAMERA_PARAM.aspect,
+      App3.CAMERA_PARAM.near,
+      App3.CAMERA_PARAM.far,
     );
     this.camera.position.set(
-      R02.CAMERA_PARAM.x,
-      R02.CAMERA_PARAM.y,
-      R02.CAMERA_PARAM.z,
+      App3.CAMERA_PARAM.x,
+      App3.CAMERA_PARAM.y,
+      App3.CAMERA_PARAM.z,
     );
-    this.camera.lookAt(R02.CAMERA_PARAM.lookAt);
+    this.camera.lookAt(App3.CAMERA_PARAM.lookAt);
 
     // ディレクショナルラト（平行光源）
     this.directionalLight = new THREE.DirectionalLight(
-      R02.DIRECTIONAL_LIGHT_PARAM.color,
-      R02.DIRECTIONAL_LIGHT_PARAM.intensity
+      App3.DIRECTIONAL_LIGHT_PARAM.color,
+      App3.DIRECTIONAL_LIGHT_PARAM.intensity
     );
     this.directionalLight.position.set(
-      R02.DIRECTIONAL_LIGHT_PARAM.x,
-      R02.DIRECTIONAL_LIGHT_PARAM.y,
-      R02.DIRECTIONAL_LIGHT_PARAM.z,
+      App3.DIRECTIONAL_LIGHT_PARAM.x,
+      App3.DIRECTIONAL_LIGHT_PARAM.y,
+      App3.DIRECTIONAL_LIGHT_PARAM.z,
     );
     this.scene.add(this.directionalLight);
 
     this.spotLight = new THREE.SpotLight(
-      R02.SPOT_LIGHT_PARAM.color,
-      R02.SPOT_LIGHT_PARAM.intensity,
-      R02.SPOT_LIGHT_PARAM.distance,
-      R02.SPOT_LIGHT_PARAM.angle,
-      R02.SPOT_LIGHT_PARAM.penumbra,
+      App3.SPOT_LIGHT_PARAM.color,
+      App3.SPOT_LIGHT_PARAM.intensity,
+      App3.SPOT_LIGHT_PARAM.distance,
+      App3.SPOT_LIGHT_PARAM.angle,
+      App3.SPOT_LIGHT_PARAM.penumbra,
     );
     this.spotLight.castShadow = true;
     this.spotLight.position.set(
@@ -213,13 +219,13 @@ export default class R02 {
 
     // アンビエントライト（環境光）
     this.ambientLight = new THREE.AmbientLight(
-      R02.AMBIENT_LIGHT_PARAM.color,
-      R02.AMBIENT_LIGHT_PARAM.intensity,
+      App3.AMBIENT_LIGHT_PARAM.color,
+      App3.AMBIENT_LIGHT_PARAM.intensity,
     );
     this.scene.add(this.ambientLight);
 
     // マテリアル
-    this.material = new THREE.MeshPhysicalMaterial(R02.MATERIAL_PARAM);
+    this.material = new THREE.MeshPhysicalMaterial(App3.MATERIAL_PARAM);
 
     // 床
     this.meshFloor = new THREE.Mesh(
@@ -235,9 +241,9 @@ export default class R02 {
     // 土台
     this.meshCone = new THREE.Mesh(
       new THREE.ConeGeometry(
-        R02.CONE_PARAM.radius,
-        R02.CONE_PARAM.height,
-        R02.CONE_PARAM.radialSegments,
+        App3.CONE_PARAM.radius,
+        App3.CONE_PARAM.height,
+        App3.CONE_PARAM.radialSegments,
       ),
       this.material
     );
@@ -252,14 +258,14 @@ export default class R02 {
 
     // 支柱
     this.cylinderGeometry = new THREE.CylinderGeometry(
-      R02.CYLINDER_PARAM.radiusTop,
-      R02.CYLINDER_PARAM.radiusBottom,
-      R02.CYLINDER_PARAM.height,
-      R02.CYLINDER_PARAM.radialSegments,
-      R02.CYLINDER_PARAM.heightSegments,
-      R02.CYLINDER_PARAM.openEnded,
-      R02.CYLINDER_PARAM.thetaStart,
-      R02.CYLINDER_PARAM.thetaLength,
+      App3.CYLINDER_PARAM.radiusTop,
+      App3.CYLINDER_PARAM.radiusBottom,
+      App3.CYLINDER_PARAM.height,
+      App3.CYLINDER_PARAM.radialSegments,
+      App3.CYLINDER_PARAM.heightSegments,
+      App3.CYLINDER_PARAM.openEnded,
+      App3.CYLINDER_PARAM.thetaStart,
+      App3.CYLINDER_PARAM.thetaLength,
     );
     this.cylinderMesh = new THREE.Mesh(
       this.cylinderGeometry,
@@ -267,17 +273,17 @@ export default class R02 {
     );
     this.cylinderMesh.castShadow = true;
     this.cylinderMesh.position.set(
-      R02.CYLINDER_PARAM.x,
-      R02.CYLINDER_PARAM.y,
+      App3.CYLINDER_PARAM.x,
+      App3.CYLINDER_PARAM.y,
     );
     this.FanGroup.add(this.cylinderMesh);
 
     // カプセル
     this.capsuleGeometry = new THREE.CapsuleGeometry(
-      R02.CAPSULE_PARAM.radius,
-      R02.CAPSULE_PARAM.length,
-      R02.CAPSULE_PARAM.capSegments,
-      R02.CAPSULE_PARAM.radialSegments,
+      App3.CAPSULE_PARAM.radius,
+      App3.CAPSULE_PARAM.length,
+      App3.CAPSULE_PARAM.capSegments,
+      App3.CAPSULE_PARAM.radialSegments,
     );
     this.capsuleMesh = new THREE.Mesh(
       this.capsuleGeometry,
@@ -285,24 +291,24 @@ export default class R02 {
     );
     this.capsuleMesh.castShadow = true;
     this.capsuleMesh.position.set(
-      R02.CAPSULE_PARAM.x,
-      R02.CAPSULE_PARAM.y,
-      R02.CAPSULE_PARAM.z,
+      App3.CAPSULE_PARAM.x,
+      App3.CAPSULE_PARAM.y,
+      App3.CAPSULE_PARAM.z,
     );
-    this.capsuleMesh.rotation.x = R02.CAPSULE_PARAM.rotationX;
+    this.capsuleMesh.rotation.x = App3.CAPSULE_PARAM.rotationX;
     this.FanGroup.add(this.capsuleMesh);
 
     // 羽根
     this.BoxGeometry = new THREE.BoxGeometry(
-      R02.BOX_PARAM.width,
-      R02.BOX_PARAM.height,
-      R02.BOX_PARAM.depth,
+      App3.BOX_PARAM.width,
+      App3.BOX_PARAM.height,
+      App3.BOX_PARAM.depth,
     );
     const BoxMesh1 = new THREE.Mesh(
       new THREE.BoxGeometry(
-        R02.BOX_PARAM.width,
-        R02.BOX_PARAM.height,
-        R02.BOX_PARAM.depth,
+        App3.BOX_PARAM.width,
+        App3.BOX_PARAM.height,
+        App3.BOX_PARAM.depth,
       ),
       this.material,
     );
@@ -310,16 +316,16 @@ export default class R02 {
     this.BoxGroup.add(BoxMesh1);
     const BoxMesh2 = new THREE.Mesh(
       new THREE.BoxGeometry(
-        R02.BOX_PARAM.height,
-        R02.BOX_PARAM.width,
-        R02.BOX_PARAM.depth,
+        App3.BOX_PARAM.height,
+        App3.BOX_PARAM.width,
+        App3.BOX_PARAM.depth,
       ),
       this.material,
     );
     BoxMesh2.castShadow = true;
     this.BoxGroup.add(BoxMesh2);
-    this.BoxGroup.position.z = R02.BOX_PARAM.z;
-    this.BoxGroup.position.y = R02.BOX_PARAM.y;
+    this.BoxGroup.position.z = App3.BOX_PARAM.z;
+    this.BoxGroup.position.y = App3.BOX_PARAM.y;
 
     this.FanGroup.add(this.BoxGroup);
 

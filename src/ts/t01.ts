@@ -1,7 +1,13 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-export default class R01 {
+window.addEventListener('DOMContentLoaded', (event) => {
+  const app = new App3();
+  app.init();
+  app.render();
+}, false);
+
+class App3 {
   /**
    * カメラ定義のための定数
    */
@@ -140,8 +146,8 @@ export default class R01 {
   init() {
     // レンダラー
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setClearColor(new THREE.Color(R01.RENDERER_PARAM.clearColor));
-    this.renderer.setSize(R01.RENDERER_PARAM.width, R01.RENDERER_PARAM.height);
+    this.renderer.setClearColor(new THREE.Color(App3.RENDERER_PARAM.clearColor));
+    this.renderer.setSize(App3.RENDERER_PARAM.width, App3.RENDERER_PARAM.height);
     this.renderer.shadowMap.enabled = true;
     const wrapper = document.querySelector('#webgl');
     wrapper.appendChild(this.renderer.domElement);
@@ -151,36 +157,36 @@ export default class R01 {
 
     // カメラ
     this.camera = new THREE.PerspectiveCamera(
-      R01.CAMERA_PARAM.fovy,
-      R01.CAMERA_PARAM.aspect,
-      R01.CAMERA_PARAM.near,
-      R01.CAMERA_PARAM.far,
+      App3.CAMERA_PARAM.fovy,
+      App3.CAMERA_PARAM.aspect,
+      App3.CAMERA_PARAM.near,
+      App3.CAMERA_PARAM.far,
     );
     this.camera.position.set(
-      R01.CAMERA_PARAM.x,
-      R01.CAMERA_PARAM.y,
-      R01.CAMERA_PARAM.z,
+      App3.CAMERA_PARAM.x,
+      App3.CAMERA_PARAM.y,
+      App3.CAMERA_PARAM.z,
     );
-    this.camera.lookAt(R01.CAMERA_PARAM.lookAt);
+    this.camera.lookAt(App3.CAMERA_PARAM.lookAt);
 
     // ディレクショナルライト（平行光源）
     this.directionalLight = new THREE.DirectionalLight(
-      R01.DIRECTIONAL_LIGHT_PARAM.color,
-      R01.DIRECTIONAL_LIGHT_PARAM.intensity
+      App3.DIRECTIONAL_LIGHT_PARAM.color,
+      App3.DIRECTIONAL_LIGHT_PARAM.intensity
     );
     this.directionalLight.position.set(
-      R01.DIRECTIONAL_LIGHT_PARAM.x,
-      R01.DIRECTIONAL_LIGHT_PARAM.y,
-      R01.DIRECTIONAL_LIGHT_PARAM.z,
+      App3.DIRECTIONAL_LIGHT_PARAM.x,
+      App3.DIRECTIONAL_LIGHT_PARAM.y,
+      App3.DIRECTIONAL_LIGHT_PARAM.z,
     );
     this.scene.add(this.directionalLight);
 
     this.spotLight = new THREE.SpotLight(
-      R01.SPOT_LIGHT_PARAM.color,
-      R01.SPOT_LIGHT_PARAM.intensity,
-      R01.SPOT_LIGHT_PARAM.distance,
-      R01.SPOT_LIGHT_PARAM.angle,
-      R01.SPOT_LIGHT_PARAM.penumbra,
+      App3.SPOT_LIGHT_PARAM.color,
+      App3.SPOT_LIGHT_PARAM.intensity,
+      App3.SPOT_LIGHT_PARAM.distance,
+      App3.SPOT_LIGHT_PARAM.angle,
+      App3.SPOT_LIGHT_PARAM.penumbra,
     );
     this.spotLight.castShadow = true;
     this.spotLight.position.set(
@@ -194,13 +200,13 @@ export default class R01 {
 
     // アンビエントライト（環境光）
     this.ambientLight = new THREE.AmbientLight(
-      R01.AMBIENT_LIGHT_PARAM.color,
-      R01.AMBIENT_LIGHT_PARAM.intensity,
+      App3.AMBIENT_LIGHT_PARAM.color,
+      App3.AMBIENT_LIGHT_PARAM.intensity,
     );
     this.scene.add(this.ambientLight);
 
     // マテリアル
-    this.material = new THREE.MeshPhysicalMaterial(R01.MATERIAL_PARAM);
+    this.material = new THREE.MeshPhysicalMaterial(App3.MATERIAL_PARAM);
     // this.material.transparent = true;
     // this.material.opacity = 0.5;
 
