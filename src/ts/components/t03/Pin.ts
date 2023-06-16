@@ -13,7 +13,7 @@ export default class Pin {
 
     this.geometry = new THREE.PlaneGeometry(size, size);
     this.material = new THREE.MeshBasicMaterial({
-      alphaMap: new THREE.TextureLoader().load('/pin.jpg'),
+      alphaMap: new THREE.TextureLoader().load('../pin.jpg'),
       color: new THREE.Color(0xcd1861),
       transparent: true,
       side: THREE.DoubleSide,

@@ -14,7 +14,7 @@ export class Earth {
     this.geometry = new THREE.SphereGeometry(radius, 32, 32);
 
     this.material = new THREE.MeshBasicMaterial({
-      alphaMap: new THREE.TextureLoader().load('/earth3.jpg'),
+      alphaMap: new THREE.TextureLoader().load('../earth3.jpg'),
       color: new THREE.Color(0x51b648),
       transparent: true,
       side: THREE.DoubleSide,

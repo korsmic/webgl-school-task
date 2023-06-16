@@ -12,7 +12,7 @@ export default class AirPlane {
   init() {
     this.geometry = new THREE.PlaneGeometry(1, 1);
     this.material = new THREE.MeshBasicMaterial({
-      alphaMap: new THREE.TextureLoader().load('/airplane.jpg'),
+      alphaMap: new THREE.TextureLoader().load('../airplane.jpg'),
       color: new THREE.Color(0xf8b71e),
       transparent: true,
       side: THREE.DoubleSide,

@@ -54,7 +54,6 @@ class T03 extends Base {
     this.cameraR.position.z = this.radius * 2.0;
     this.scene.add(this.cameraR);
 
-    let SCREEN_WIDTH = ww, SCREEN_HEIGHT = wh;
     this.cameraL.aspect = 0.5 * ww / wh;
     this.cameraR.aspect = 0.5 * ww / wh;
     this.cameraR.updateProjectionMatrix();
