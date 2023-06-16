@@ -2,20 +2,28 @@
 @use 'include-media/dist/_include-media' as *;
 
 .p_top {
-  font-size: pc(30);
   background-color: #000;
   color: #fff;
   height: 100%;
 
   ul {
     display: flex;
-    flex-direction: column;
     row-gap: 1em;
+    flex-wrap: wrap;
 
     li {
+      width: 25%;
+
       a {
+        font-size: 40px;
+        color: #000;
+        filter: invert(1);
+        font-weight: 700;
+        font-style: italic;
         text-decoration: underline;
+        text-underline-offset: 0.25em;
       }
+
     }
   }
 }

@@ -1,0 +1,51 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.l_Info {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  z-index: 2;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+
+  h1 {
+    font-size: 40px;
+    color: #000;
+    filter: invert(1);
+    font-weight: 700;
+    font-style: italic;
+  }
+
+}
+
+.l_Info_links {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  column-gap: .25em;
+
+  p {
+    font-weight: 600;
+    display: flex;
+    column-gap: .25em;
+
+    &:last-child {
+      &::before {
+        content: "/";
+      }
+
+    }
+
+    a {
+      color: #000;
+      text-decoration: underline;
+      filter: invert(1);
+      text-underline-offset: 0.25em;
+    }
+  }
+
+
+}

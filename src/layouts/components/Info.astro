@@ -1,0 +1,16 @@
+---
+import metadata from '@data/metadata';
+export interface Props {
+  pageId: string;
+}
+
+const { pageId } = Astro.props;
+---
+
+<div class="l_Info">
+  <h1>{metadata[pageId].title}</h1>
+  <div class="l_Info_links">
+    <p><a href={metadata[pageId].github} target="_blank">Github</a></p>
+    <p><a href="../">Index</a></p>
+  </div>
+</div>

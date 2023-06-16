@@ -5,7 +5,7 @@
 .c_btn {
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px;
   display: flex;
   align-items: center;
   column-gap: 20px;
@@ -16,7 +16,7 @@
   color: #fff;
   border: 1px solid #fff;
   font-size: 20px;
-  padding: 5px;
+  padding: 10px;
   height: fit-content;
   @include transition((background-color, color));
 

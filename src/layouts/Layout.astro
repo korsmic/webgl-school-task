@@ -3,6 +3,7 @@ import metadata from '@data/metadata';
 import '@styles/main.scss';
 import GoogleFont from './components/GoogleFont.astro';
 import Head from './components/Head.astro';
+import Info from './components/Info.astro';
 
 export interface Props {
   pageId: string;
@@ -19,6 +20,7 @@ const { pageId } = Astro.props;
     />
   </head>
   <body data-page={pageId}>
+    {pageId !== 'top' && <Info pageId={pageId} />}
     <div class="l_wrap">
       <main class="l_main">
         <slot />
