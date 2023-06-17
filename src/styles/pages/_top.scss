@@ -10,18 +10,50 @@
     display: flex;
     row-gap: 1em;
     flex-wrap: wrap;
+    gap: pc(20);
 
     li {
-      width: 25%;
+      width: calc(25% - pc(15));
+      overflow: hidden;
 
       a {
         font-size: 40px;
-        color: #000;
-        filter: invert(1);
+        // color: #fff;
         font-weight: 700;
         font-style: italic;
         text-decoration: underline;
         text-underline-offset: 0.25em;
+        position: relative;
+
+        &:hover {
+          picture {
+            scale: 1.1;
+          }
+        }
+
+        picture {
+          width: 100%;
+          height: 100%;
+          display: block;
+          position: relative;
+          z-index: 1;
+          @include transition(scale);
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        span {
+          position: absolute;
+          color: #fff;
+          mix-blend-mode: difference;
+          top: 0;
+          left: 0;
+          z-index: 2;
+        }
       }
 
     }
@@ -29,7 +61,7 @@
 }
 
 .p_top_wrap {
-  width: pc(1000);
+  width: pc(1300);
   margin: auto;
   padding: pc(50);
 

@@ -14,7 +14,13 @@ export default class Star {
   init(size, count) {
     this.geometry = new THREE.BufferGeometry();
     this.material = new THREE.PointsMaterial({
+      map: new THREE.TextureLoader().load("../assets/images/03/star.webp"),
+      transparent: true,
+      alphaMap: new THREE.TextureLoader().load("../assets/images/03/star.webp"),
+      depthWrite: false,
+      verTexColors: true,
       color: 0xffffff,
+      blending: THREE.AdditiveBlending,
       size: size,
     });
     this.starCount = count;

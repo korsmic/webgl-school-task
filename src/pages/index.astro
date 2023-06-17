@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import metadata from '@data/metadata';
+import Picture from '@components/modules/Picture.astro';
 ---
 
 <Layout pageId="top">
@@ -8,9 +9,24 @@ import metadata from '@data/metadata';
     <div class="p_top_wrap">
       <h1>WebGL School Task</h1>
       <ul>
-        <li><a href={metadata.t01.url}>01</a></li>
-        <li><a href={metadata.t02.url}>02</a></li>
-        <li><a href={metadata.t03.url}>03</a></li>
+        <li>
+          <a href={metadata.t01.url}>
+            <Picture src="screenshot/01" alt="" sp={false} />
+            <span>01</span>
+          </a>
+        </li>
+        <li>
+          <a href={metadata.t02.url}>
+            <Picture src="screenshot/02" alt="" sp={false} />
+            <span>02</span>
+          </a>
+        </li>
+        <li>
+          <a href={metadata.t03.url}>
+            <Picture src="screenshot/03" alt="" sp={false} />
+            <span>03</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

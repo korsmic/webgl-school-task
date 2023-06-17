@@ -44,8 +44,8 @@ const searchFiles = async (dirPath, pubDirPath) => {
     index,
     { dirName, pubDirName, fileName, ext },
   ] of imageFileInfos.entries()) {
-    const webpOption = { quality: 70, effort: 0, lossless: false };
-    const avifOption = { quality: 90, effort: 0, lossless: false };
+    const webpOption = { quality: 85, effort: 0, lossless: false };
+    const avifOption = { quality: 85, effort: 0, lossless: false };
 
     const sharpStream = await sharp(`./${dirName}/${fileName}`, {
       sequentialRead: true,

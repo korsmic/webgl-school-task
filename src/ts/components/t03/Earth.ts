@@ -5,6 +5,8 @@ export class Earth {
   private geometry: THREE.SphereGeometry;
   private material: THREE.MeshBasicMaterial;
   private mesh: THREE.Mesh;
+  private wireframeMaterial: THREE.MeshBasicMaterial;
+  private wireframeMesh: THREE.Mesh;
 
   constructor(radius: number) {
     this.init(radius);
@@ -14,7 +16,7 @@ export class Earth {
     this.geometry = new THREE.SphereGeometry(radius, 32, 32);
 
     this.material = new THREE.MeshBasicMaterial({
-      alphaMap: new THREE.TextureLoader().load('../earth3.jpg'),
+      alphaMap: new THREE.TextureLoader().load('../assets/images/03/earth3.webp'),
       color: new THREE.Color(0x51b648),
       transparent: true,
       side: THREE.DoubleSide,

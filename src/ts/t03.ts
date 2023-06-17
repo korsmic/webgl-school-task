@@ -6,6 +6,7 @@ import { Earth } from './components/t03/Earth';
 import AirPlane from './components/t03/AirPlane';
 import Pin from './components/t03/Pin';
 import Star from './components/t03/Star';
+import UFO from './components/t03/UFO';
 
 window.addEventListener('DOMContentLoaded', () => {
   new T03().render();
@@ -26,17 +27,25 @@ class T03 extends Base {
   private airPlaneTurnScale: number;
   private stars: THREE.Mesh;
   private innerPin: THREE.Mesh;
-
+  private ufo: THREE.Mesh;
+  private ufoSize: number;
+  private ufoDistance: number;
+  private ufoSpeed: number;
   private cameraL: THREE.PerspectiveCamera;
   private cameraR: THREE.PerspectiveCamera;
+  private clock: THREE.Clock;
 
   constructor() {
     super();
     this.radius = 5;
-    this.pinSize = 1;
+    this.pinSize = 0.8;
+    this.ufoSize = 0.2;
+    this.ufoDistance = this.radius * 1.5;
+    this.ufoSpeed = 0.5;
     this.airPlaneSize = 1;
     this.airPlaneSpeed = 0.4;
     this.airPlaneTurnScale = 0.3;
+    this.clock = new THREE.Clock();
 
     let ww = window.innerWidth;
     let wh = window.innerHeight;
@@ -45,7 +54,9 @@ class T03 extends Base {
     // cameraL
     this.cameraL = new THREE.PerspectiveCamera(75, ww / wh, 0.1, 1000);
     this.controls = new OrbitControls(this.cameraL, this.renderer.domElement);
-    this.cameraL.position.z = this.radius * 2.5;
+    this.cameraL.position.z = this.radius * 2.8;
+    this.cameraL.position.y = this.radius * 0.5;
+    this.cameraL.lookAt(0, 0, 0);
     this.scene.add(this.cameraL);
 
     // cameraR
@@ -113,9 +124,17 @@ class T03 extends Base {
     }, 5000);
 
     // star
-    const startObject = new Star(0.1, 1200);
+    const startObject = new Star(0.4, 1200);
     this.stars = startObject.getMesh();
     this.scene.add(this.stars);
+
+    // ufo
+    const ufoObject = new UFO(this.ufoSize);
+    this.ufo = ufoObject.getMesh();
+    const ufoPos = this.translateGeoCoords(0, 270, this.ufoDistance);
+    this.ufo.position.set(ufoPos.x, ufoPos.y, ufoPos.z);
+    this.ufo.lookAt(0, 0, 0);
+    this.scene.add(this.ufo);
 
     // light
     this.light = new THREE.AmbientLight(0xffffff, 0.7);
@@ -193,6 +212,15 @@ class T03 extends Base {
 
     // airPlaneがearthに対して平行になるようにする
     this.airPlane.lookAt(0, 0, 0);
+
+    // ufoを衛星軌道で回転させる
+    const angle = this.clock.getElapsedTime() * this.ufoSpeed;
+    this.ufo.position.x = this.ufoDistance * Math.sin(angle);
+    this.ufo.position.y = this.ufoDistance * Math.sin(angle * 0.5);
+    this.ufo.position.z = this.ufoDistance * Math.cos(angle);
+    this.ufo.rotation.x -= 0.01;
+    this.ufo.rotation.y -= 0.01;
+    this.ufo.rotation.z += 0.01;
 
     // cameraRの位置をairPlane真上の位置に設定
     this.cameraR.position.copy(this.airPlane.position);
