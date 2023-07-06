@@ -49,7 +49,7 @@ export default class Bg {
       texture2.wrapT = THREE.RepeatWrapping;
       texture2.repeat.set(size, 1);
       texture2.minFilter = THREE.LinearFilter;
-      texture2.offset.set(offset, 0);  // Offset the second texture
+      texture2.offset.set(offset, 0);
       textures.push(texture2);
     }
 
@@ -66,7 +66,6 @@ export default class Bg {
       true,
     );
 
-    // Create materials for each texture
     const materials = textures.map((texture) => new THREE.MeshBasicMaterial({
       side: THREE.DoubleSide,
       map: texture,
@@ -74,7 +73,6 @@ export default class Bg {
       // depthTest: false
     }));
 
-    // Add meshes with different materials to the group
     materials.forEach((material) => {
       const bg = new THREE.Mesh(geometry, material);
       bg.renderOrder = order;
