@@ -1,0 +1,115 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.p_geometryInfo {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  background-color: #0D0D0D;
+  height: 100vh;
+  padding: 50px;
+  color: #EEB902;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 2;
+
+  * {
+    @include media('<tab', 'screen') {
+      word-break: break-all;
+    }
+  }
+
+  @include media('<tab', 'screen') {
+    width: 40%;
+    height: 100dvh;
+    padding: vw(20);
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: 700;
+    padding-bottom: 30px;
+
+    @include media('<tab', 'screen') {
+      font-size: vw(16);
+      padding-bottom: vw(10);
+    }
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 700;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    line-height: 1.5;
+
+    @include media('<tab', 'screen') {
+      font-size: vw(13);
+      padding-top: vw(10);
+      padding-bottom: vw(10);
+    }
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 15px;
+    align-items: start;
+    font-size: 18px;
+    line-height: 1.5;
+
+    @include media('<tab', 'screen') {
+      font-size: vw(12);
+      gap: vw(5);
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.p_geometryInfo_wrap {
+  overflow: auto;
+  height: fit-content;
+  width: 100%;
+}
+
+.p_geometryInfo_close {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 30px;
+  right: 30px;
+  background-color: rgba(255, 255, 255, 0.05);
+
+  @include media('<tab', 'screen') {
+    display: none;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    /* 棒の幅（太さ） */
+    height: 30px;
+    /* 棒の高さ */
+    background: #EEB902;
+
+    @include media('<tab', 'screen') {}
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}

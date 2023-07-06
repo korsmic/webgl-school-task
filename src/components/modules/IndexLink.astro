@@ -1,0 +1,19 @@
+---
+import Picture from "@components/modules/Picture.astro";
+
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+// idからtを取り除く
+const title = id.replace(/^t/, "");
+---
+
+<li>
+  <a href={`/${title}/`}>
+    <Picture src={`screenshot/${title}`} alt="" sp={false} />
+    <span>{title}</span>
+  </a>
+</li>

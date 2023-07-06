@@ -9,15 +9,19 @@ export class Base {
 
   constructor() {
     this.scene = new THREE.Scene();
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+    });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     document.querySelector('#webgl').appendChild(this.renderer.domElement);
   }
 
   public resize(): void {
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
+    window.addEventListener('resize', () => {
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+    });
   }
 
   public render(): void {
@@ -25,4 +29,16 @@ export class Base {
     this.controls.update();
     this.renderer.render(this.scene, this.camera);
   }
+
+  // public calcSize(originalWidth, originalHeight, camera, screenPercentage) {
+  //   const aspectRatio = originalWidth / originalHeight;
+  //   const vFOV = THREE.MathUtils.degToRad(camera.fov);
+  //   const distance = camera.position.z;
+  //   const visibleHeightAtDistance = 2 * Math.tan(vFOV / 2) * distance;
+  //   const visibleWidthAtDistance = visibleHeightAtDistance * camera.aspect;
+  //   const newObjectWidth = visibleWidthAtDistance * screenPercentage;
+  //   const newObjectHeight = newObjectWidth / aspectRatio;
+
+  //   return { width: newObjectWidth, height: newObjectHeight };
+  // }
 }

@@ -1,16 +1,22 @@
 ---
-import metadata from '@data/metadata';
+import metadata from "@data/metadata";
 export interface Props {
   pageId: string;
 }
 
 const { pageId } = Astro.props;
+// pageIdからtを取り除く
+const title = pageId.replace(/^t/, "");
 ---
 
 <div class="l_Info">
-  <h1>{metadata[pageId].title}</h1>
+  <h1>{title}</h1>
   <div class="l_Info_links">
-    <p><a href={metadata[pageId].github} target="_blank">Github</a></p>
+    <p>
+      <a href={`${metadata.global.github}${pageId}.ts`} target="_blank"
+        >Github</a
+      >
+    </p>
     <p><a href="../">Index</a></p>
   </div>
 </div>

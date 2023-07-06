@@ -1,0 +1,29 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+
+.c_slidenum {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  align-items: flex-end;
+  color: #fff;
+  mix-blend-mode: difference;
+  font-size: 30px;
+  font-weight: 900;
+  column-gap: 0.5em;
+}
+
+.c_slidenum_current {
+  font-size: 80px;
+
+  @include media("<tab", "screen") {}
+}
+
+.c_slidenum_total {
+  font-size: 50px;
+
+  @include media("<tab", "screen") {}
+}
