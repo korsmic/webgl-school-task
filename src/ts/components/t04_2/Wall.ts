@@ -15,7 +15,7 @@ export default class Wall {
     this._wall.children[1].rotation.set(Math.PI * 0.5, 0, 0);
     this._wall.children[2].rotation.set(0, Math.PI * 0.5, 0);
     this._wall.children[0].position.set(size * 10 + size, 0, 0);
-    this._wall.children[2].position.set(size * 10 + size, 0, size * 10 + size);
+    this._wall.children[2].position.set(size * 10 + size, 0, size * 10 + size + 0.01);
     this._wall.children[1].position.set(0, -0.01, 0);
     this._wall.position.set(-size * 5, -size * 5, -size * 5);
   }
