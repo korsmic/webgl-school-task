@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import config from './.config';
 import relativeLinks from 'astro-relative-links';
+import glsl from 'vite-plugin-glsl';
 
 // https://astro.build/config
 // https://purgecss.com/configuration.html#options
@@ -20,6 +21,7 @@ export default defineConfig({
     format: 'directory',
     assets: 'assets',
   },
+  plugins: [glsl()],
   vite: {
     build: {
       cssCodeSplit: false,

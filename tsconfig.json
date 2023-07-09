@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "types": ["node"],
+    "types": ["node", "vite-plugin-glsl/ext"],
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
