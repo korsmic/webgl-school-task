@@ -20,13 +20,12 @@ jobs:
         run: |
           echo "//npm.greensock.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .npmrc
           echo "@gsap:registry=https://npm.greensock.com" >> .npmrc
-          npm config set cache .npm
           npm ci
       - name: Install, build, and upload your site output
         uses: withastro/action@v0
         with:
-          node-version: 16
-          cache: npm
+          node-version: 18
+          package-manager: npm
 
   deploy:
     needs: build
