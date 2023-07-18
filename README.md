@@ -47,7 +47,9 @@
 
 ### 課題4
 
-<https://korsmic.github.io/webgl-school-task/04/>
+- <https://korsmic.github.io/webgl-school-task/04/>
+- <https://korsmic.github.io/webgl-school-task/04_1/>
+- <https://korsmic.github.io/webgl-school-task/04_2/>
 
 #### 要件
 
@@ -55,3 +57,13 @@
 - 例えば、「サムネイルをリンクのように扱う」とか「3Dで画像のビューアを作る」といったテーマを選ぶことができます。
 - [CLOU architects](https://www.clouarchitects.com/)
 - [Guillaume Tomasi - Photographer](https://www.guillaumetomasi.com/)
+
+### 課題5
+
+- <https://korsmic.github.io/webgl-school-task/05/>
+- <https://korsmic.github.io/webgl-school-task/05_2/>
+
+#### 要件
+
+- 五⾓形を作るという課題に挑戦することから始めてみましょう。
+- もし五⾓形がうまく作れたら、次は五芒星（星型）を描いてみるというように、少しずつ、複雑な形に挑戦してみましょう。
