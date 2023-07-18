@@ -1,0 +1,18 @@
+@use '../global/index' as *;
+@use 'include-media/dist/_include-media' as *;
+
+.c_subttl {
+  font-size: 60px;
+  font-weight: 700;
+  color: #fff;
+  mix-blend-mode: difference;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateY(-50%);
+  text-transform: uppercase;
+
+  @include media('<tab', 'screen') {
+    font-size: vw(30);
+  }
+}

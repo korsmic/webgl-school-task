@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { TextureLoader } from 'three';
 import gsap from 'gsap';
-import { easeOutQuint } from '@ts/utility/ease';
+import { easeOutQuint } from '../../utility/ease';
 
 export default class Card {
   private _cards: THREE.Group;

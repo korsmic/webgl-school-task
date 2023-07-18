@@ -3,6 +3,8 @@ dist/
 .output/
 .npmrc
 
+.npmrc
+
 # dependencies
 node_modules/
 

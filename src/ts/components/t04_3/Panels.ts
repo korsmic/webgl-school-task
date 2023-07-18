@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
-import { easeOutQuint } from '@ts/utility/ease';
+import { easeOutQuint } from '../../utility/ease';
 
 export default class Panels {
   private _panels: THREE.Group;

@@ -21,8 +21,8 @@ export default defineConfig({
     format: 'directory',
     assets: 'assets',
   },
-  plugins: [glsl()],
   vite: {
+    plugins: [glsl()],
     build: {
       cssCodeSplit: false,
       // rollupOptions: {
