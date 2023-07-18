@@ -21,7 +21,8 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v3
       - run: echo "@example-team:registry=https://npm.pkg.github.com/example-repo" >> .npmrc
-      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .npmrc
+      - run: echo "//npm.greensock.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}" >> .npmrc
+      - run: echo "@gsap:registry=https://npm.greensock.com" >> .npmrc
       - run: npm ci
       - name: Install, build, and upload your site output
         uses: withastro/action@v0
