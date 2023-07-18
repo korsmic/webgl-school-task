@@ -33,6 +33,7 @@ class T05_2 extends Base {
   pentagon: Number[];
   hexagon: Number[];
   zero: Number[];
+  animationTime: Number;
 
   constructor() {
     super();

@@ -34,6 +34,12 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Create .npmrc file
+        run: |
+          echo '//npm.greensock.com/:_authToken=${{ secrets.PERSONAL_ACCESS_TOKEN }}' > .npmrc
+          echo '@gsap:registry=https://npm.greensock.com' >> .npmrc
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
