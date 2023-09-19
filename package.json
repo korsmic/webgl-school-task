@@ -63,6 +63,7 @@
   "dependencies": {
     "astro-relative-links": "^0.3.4",
     "gsap": "npm:@gsap/shockingly@^3.12.2",
-    "three": "^0.154.0"
+    "three": "^0.154.0",
+    "tweakpane": "^4.0.1"
   }
 }
